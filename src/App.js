@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Dropdown from "./components/Dropdown";
 
 function App() {
+  const [selection, setSelection] = useState(null);
+
+  // For getting the value
+  const handelSelect = (option) => {
+    setSelection(option);
+  };
+
+  // Options to be passed on the component
+  const options = [
+    { label: "Yes", value: "yes" },
+    { label: "Probably Not", value: "probably-not" },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className="text-xl font-bold mb-4">Should you use Dropdown?</h1>
+      <div className="flex">
+        <Dropdown value={selection} onChange={handelSelect} options={options} />
+      </div>
     </div>
   );
 }
